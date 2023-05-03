@@ -20,7 +20,7 @@ pipeline {
                 sh 'docker login -u lippo69 -p Lippo321604307!'
                 sh 'docker build -t lippo69/first-image .'
                 sh 'docker push lippo69/first-image'
-                sh 'docker pull lippo69/first-image && docker stop test-deploy && docker rm test-deploy && docker run -d --name test-deploy -p 80:80 lippo69/first-image'
+                sh 'docker pull lippo69/first-image && docker run -d --name test-deploy -p 80:80 lippo69/first-image'
             }
         }
     }
