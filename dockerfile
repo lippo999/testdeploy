@@ -1,12 +1,8 @@
-# Stage 1: Build the Angular app
-FROM node:20 AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build --prod
-
-# Stage 2: Set up Nginx
+# Start with the Nginx image
 FROM nginx:1.21-alpine
-COPY --from=build /app/dist/deploy /usr/share/nginx/html
+
+# Copy the 'dist' folder from the Jenkins workspace
+COPY dist /usr/share/nginx/html
+
+# Copy the nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
