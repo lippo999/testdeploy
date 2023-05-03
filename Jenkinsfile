@@ -10,9 +10,9 @@ pipeline {
                 sh 'npm run build --prod'
             }
         }
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                sh 'npm test'
+                sh 'docker build -t lippo69/first-image .'
             }
         }
         stage('Deploy') {
